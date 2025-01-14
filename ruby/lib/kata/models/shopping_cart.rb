@@ -36,9 +36,7 @@ class Kata::ShoppingCart
         quantity_as_int = quantity.to_i
         discount = nil
         offer_quantity = 1
-        if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-          offer_quantity = 3
-        end
+        offer_quantity = 3 if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
         if offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
           offer_quantity = 2
           if quantity_as_int >= 2
