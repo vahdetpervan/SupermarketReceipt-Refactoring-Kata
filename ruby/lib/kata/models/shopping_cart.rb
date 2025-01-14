@@ -35,23 +35,23 @@ class Kata::ShoppingCart
         unit_price = catalog.unit_price(product)
         quantity_as_int = quantity.to_i
         discount = nil
-        x = 1
+        offer_quantity = 1
         if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-          x = 3
+          offer_quantity = 3
 
         elsif offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-          x = 2
+          offer_quantity = 2
           if quantity_as_int >= 2
-            total = offer.argument * (quantity_as_int / x) + quantity_as_int % 2 * unit_price
+            total = offer.argument * (quantity_as_int / offer_quantity) + quantity_as_int % 2 * unit_price
             discount_n = unit_price * quantity - total
             discount = Kata::Discount.new(product, "2 for " + offer.argument.to_s, discount_n)
           end
 
         end
-        if offer.offer_type == Kata::SpecialOfferType:: FIVE_FOR_AMOUNT
-          x = 5
+        if offer.offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT
+          offer_quantity = 5
         end
-        number_of_x = quantity_as_int / x
+        number_of_x = quantity_as_int / offer_quantity
         if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity_as_int > 2
           discount_amount = quantity * unit_price - ((number_of_x * 2 * unit_price) + quantity_as_int % 3 * unit_price)
           discount = Kata::Discount.new(product, "3 for 2", discount_amount)
@@ -61,7 +61,7 @@ class Kata::ShoppingCart
         end
         if offer.offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity_as_int >= 5
           discount_total = unit_price * quantity - (offer.argument * number_of_x + quantity_as_int % 5 * unit_price)
-          discount = Kata::Discount.new(product, x.to_s + " for " + offer.argument.to_s, discount_total)
+          discount = Kata::Discount.new(product, offer_quantity.to_s + " for " + offer.argument.to_s, discount_total)
         end
 
         receipt.add_discount(discount) if discount
