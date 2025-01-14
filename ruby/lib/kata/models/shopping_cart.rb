@@ -38,8 +38,8 @@ class Kata::ShoppingCart
         offer_quantity = 1
         if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
           offer_quantity = 3
-
-        elsif offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+        end
+        if offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
           offer_quantity = 2
           if quantity_as_int >= 2
             total = offer.argument * (quantity_as_int / offer_quantity) + quantity_as_int % 2 * unit_price
