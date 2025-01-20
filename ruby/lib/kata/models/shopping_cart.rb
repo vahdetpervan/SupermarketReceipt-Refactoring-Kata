@@ -28,8 +28,7 @@ class Kata::ShoppingCart
   end
 
   def handle_offers(receipt, offers, catalog)
-    for product in @product_quantities.keys do
-      quantity = @product_quantities[product]
+    @product_quantities.each do |product, quantity|
       if offers.key?(product)
         offer = offers[product]
         if offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT && quantity.to_i >= 2
