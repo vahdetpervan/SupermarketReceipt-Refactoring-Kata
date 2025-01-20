@@ -29,7 +29,7 @@ class Kata::ShoppingCart
 
   def handle_offers(receipt, offers, catalog)
     @product_quantities.each do |product, quantity|
-      next if !offers.key?(product)
+      next unless offers.key?(product)
 
       if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT && quantity.to_i >= 2
         total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * catalog.unit_price(product)
