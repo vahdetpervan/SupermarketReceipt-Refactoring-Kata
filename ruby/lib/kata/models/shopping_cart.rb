@@ -32,23 +32,22 @@ class Kata::ShoppingCart
       quantity = @product_quantities[product]
       if offers.key?(product)
         offer = offers[product]
-        unit_price = catalog.unit_price(product)
         if offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT && quantity.to_i >= 2
-          total = offer.argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
-          discount_n = unit_price * quantity - total
+          total = offer.argument * (quantity.to_i / 2) + quantity.to_i % 2 * catalog.unit_price(product)
+          discount_n = catalog.unit_price(product) * quantity - total
           discount = Kata::Discount.new(product, "2 for " + offer.argument.to_s, discount_n)
         end
         if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity.to_i > 2
           item_units_for_discount = quantity.to_i / 3
-          discount_amount = quantity * unit_price - ((item_units_for_discount * 2 * unit_price) + quantity.to_i % 3 * unit_price)
+          discount_amount = quantity * catalog.unit_price(product) - ((item_units_for_discount * 2 * catalog.unit_price(product)) + quantity.to_i % 3 * catalog.unit_price(product))
           discount = Kata::Discount.new(product, "3 for 2", discount_amount)
         end
         if offer.offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
-          discount = Kata::Discount.new(product, offer.argument.to_s + "% off", quantity * unit_price * offer.argument / 100.0)
+          discount = Kata::Discount.new(product, offer.argument.to_s + "% off", quantity * catalog.unit_price(product) * offer.argument / 100.0)
         end
         if offer.offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
           item_units_for_discount = quantity.to_i / 5
-          discount_total = unit_price * quantity - (offer.argument * item_units_for_discount + quantity.to_i % 5 * unit_price)
+          discount_total = catalog.unit_price(product) * quantity - (offer.argument * item_units_for_discount + quantity.to_i % 5 * catalog.unit_price(product))
           discount = Kata::Discount.new(product, 5.to_s + " for " + offer.argument.to_s, discount_total)
         end
 
