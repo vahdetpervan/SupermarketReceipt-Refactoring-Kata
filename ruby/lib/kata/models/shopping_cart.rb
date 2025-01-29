@@ -31,12 +31,12 @@ class Kata::ShoppingCart
     @product_quantities.each do |product, quantity|
       next unless offers.key?(product)
 
-      if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT && quantity.to_i >= 2
+      if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
         total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * catalog.unit_price(product)
         discount_n = catalog.unit_price(product) * quantity - total
         discount = Kata::Discount.new(product, "2 for " + offers[product].argument.to_s, discount_n)
       end
-      if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity.to_i > 2
+      if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
         item_units_for_discount = quantity.to_i / 3
         discount_amount = quantity * catalog.unit_price(product) - ((item_units_for_discount * 2 * catalog.unit_price(product)) + quantity.to_i % 3 * catalog.unit_price(product))
         discount = Kata::Discount.new(product, "3 for 2", discount_amount)
