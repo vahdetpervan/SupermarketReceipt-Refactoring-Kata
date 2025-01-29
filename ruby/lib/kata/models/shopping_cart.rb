@@ -30,11 +30,12 @@ class Kata::ShoppingCart
   def handle_offers(receipt, offers, catalog)
     @product_quantities.each do |product, quantity|
       next unless offers.key?(product)
+      offer = offers[product]
 
-      if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-        total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * catalog.unit_price(product)
+      if offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+        total = offer.argument * (quantity.to_i / 2) + quantity.to_i % 2 * catalog.unit_price(product)
         discount_n = catalog.unit_price(product) * quantity - total
-        discount = Kata::Discount.new(product, "2 for " + offers[product].argument.to_s, discount_n)
+        discount = Kata::Discount.new(product, "2 for " + offer.argument.to_s, discount_n)
       end
       if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
         item_units_for_discount = quantity.to_i / 3
