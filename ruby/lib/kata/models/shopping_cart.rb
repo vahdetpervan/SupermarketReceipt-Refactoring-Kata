@@ -32,18 +32,7 @@ class Kata::ShoppingCart
       next unless offers.key?(product)
       offer = offers[product]
 
-      if offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-        discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
-      end
-      if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-        discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
-      end
-      if offer.offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
-        discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
-      end
-      if offer.offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
-        discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
-      end
+      discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
       receipt.add_discount(discount) if discount
     end
   end
