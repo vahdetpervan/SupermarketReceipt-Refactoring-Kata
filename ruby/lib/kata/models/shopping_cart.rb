@@ -44,9 +44,7 @@ class Kata::ShoppingCart
         discount = Kata::Discount.new(product, offer.argument.to_s + "% off", quantity * catalog.unit_price(product) * offer.argument / 100.0)
       end
       if offer.offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
-        item_units_for_discount = quantity.to_i / 5
-        discount_total = catalog.unit_price(product) * quantity - (offer.argument * item_units_for_discount + quantity.to_i % 5 * catalog.unit_price(product))
-        discount = Kata::Discount.new(product, 5.to_s + " for " + offer.argument.to_s, discount_total)
+        discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
       end
       receipt.add_discount(discount) if discount
     end
