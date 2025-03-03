@@ -30,11 +30,9 @@ class Kata::ShoppingCart
   def handle_offers(receipt, offers, catalog)
     @product_quantities.each do |product, quantity|
       next unless offers.key?(product)
-      offer = offers[product]
 
-      discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
+      discount = offers[product].discount(quantity: quantity, unit_price: catalog.unit_price(product))
       receipt.add_discount(discount) if discount
     end
   end
-
 end

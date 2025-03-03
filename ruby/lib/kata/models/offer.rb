@@ -8,7 +8,7 @@ class Kata::Offer
     @product = product
   end
 
-  def handle(quantity:, unit_price:)
+  def discount(quantity:, unit_price:)
     if self.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
       total = self.argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
       discount_n = unit_price * quantity - total
