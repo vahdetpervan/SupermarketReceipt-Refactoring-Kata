@@ -36,9 +36,7 @@ class Kata::ShoppingCart
         discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
       end
       if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-        item_units_for_discount = quantity.to_i / 3
-        discount_amount = quantity * catalog.unit_price(product) - ((item_units_for_discount * 2 * catalog.unit_price(product)) + quantity.to_i % 3 * catalog.unit_price(product))
-        discount = Kata::Discount.new(product, "3 for 2", discount_amount)
+        discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
       end
       if offer.offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
         discount = offer.handle(quantity: quantity, unit_price: catalog.unit_price(product))
