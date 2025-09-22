@@ -10,9 +10,7 @@ class Kata::Offer
 
   def discount(quantity:, unit_price:)
     if offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-      total = argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
-      discount_n = unit_price * quantity - total
-      return Kata::Discount.new(product, "2 for " + argument.to_s, discount_n)
+      return calculate_two_for_amount_discount(quantity:, unit_price:)
     end
     if offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
       item_units_for_discount = quantity.to_i / 3
@@ -29,4 +27,11 @@ class Kata::Offer
     end
   end
 
+  private
+
+  def calculate_two_for_amount_discount(quantity:, unit_price:)
+    total = argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
+    discount_n = unit_price * quantity - total
+    Kata::Discount.new(product, "2 for " + argument.to_s, discount_n)
+  end
 end
