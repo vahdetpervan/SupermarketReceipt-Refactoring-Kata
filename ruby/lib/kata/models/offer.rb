@@ -1,5 +1,4 @@
 class Kata::Offer
-
   attr_reader :product, :offer_type, :argument
 
   def initialize(offer_type, product, argument)
@@ -14,5 +13,4 @@ class Kata::Offer
     return Kata::TenPercentDiscount.new(product: product, argument: argument, quantity: quantity, unit_price: unit_price).build if offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
     Kata::FiveForAmount.new(quantity: quantity, unit_price: unit_price, argument: argument, product: product).build if offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
   end
-
 end
