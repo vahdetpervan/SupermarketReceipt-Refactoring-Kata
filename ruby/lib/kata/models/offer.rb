@@ -9,11 +9,8 @@ class Kata::Offer
   end
 
   def discount(quantity:, unit_price:)
-    if offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-      total = argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
-      discount_n = unit_price * quantity - total
-      return Kata::Discount.new(product, "2 for " + argument.to_s, discount_n)
-    end
+    return Kata::TwoForAmount.new(argument: argument, quantity: quantity, unit_price: unit_price, product: product).build if offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+
     if offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
       item_units_for_discount = quantity.to_i / 3
       discount_amount = quantity * unit_price - ((item_units_for_discount * 2 * unit_price) + quantity.to_i % 3 * unit_price)
