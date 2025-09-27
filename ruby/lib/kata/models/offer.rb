@@ -12,9 +12,6 @@ class Kata::Offer
     return calculate_two_for_amount_discount(quantity:, unit_price:) if offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
     return calculate_three_for_two_discount(quantity:, unit_price:) if offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
 
-    if offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-      return calculate_three_for_two_discount(quantity:, unit_price:)
-    end
     if offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
       return Kata::Discount.new(product, argument.to_s + "% off", quantity * unit_price * argument / 100.0)
     end
