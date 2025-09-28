@@ -8,5 +8,9 @@ module Kata::Discounts
       @argument = argument
       @product = product
     end
+
+    def calculate
+      Kata::Discount.new(product, argument.to_s + "% off", quantity * unit_price * argument / 100.0)
+    end
   end
 end
