@@ -18,12 +18,6 @@ class Kata::Offer
 
   private
 
-  def calculate_three_for_two_discount(quantity:, unit_price:)
-    item_units_for_discount = quantity.to_i / 3
-    discount_amount = quantity * unit_price - ((item_units_for_discount * 2 * unit_price) + quantity.to_i % 3 * unit_price)
-    Kata::Discount.new(product, "3 for 2", discount_amount)
-  end
-
   def calculate_five_for_amount_discount(quantity:, unit_price:)
     item_units_for_discount = quantity.to_i / 5
     discount_total = unit_price * quantity - (argument * item_units_for_discount + quantity.to_i % 5 * unit_price)
