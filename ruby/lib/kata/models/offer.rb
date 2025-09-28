@@ -17,12 +17,4 @@ class Kata::Offer
 
     calculate_five_for_amount_discount(quantity:, unit_price:) if offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
   end
-
-  private
-
-  def calculate_five_for_amount_discount(quantity:, unit_price:)
-    item_units_for_discount = quantity.to_i / 5
-    discount_total = unit_price * quantity - (argument * item_units_for_discount + quantity.to_i % 5 * unit_price)
-    Kata::Discount.new(product, 5.to_s + " for " + argument.to_s, discount_total)
-  end
 end
