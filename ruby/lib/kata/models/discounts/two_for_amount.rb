@@ -1,6 +1,6 @@
 module Kata::Discounts
   class TwoForAmount
-    attr_reader :amount, :quantity, :unit_price, :product
+    attr_reader :argument, :quantity, :unit_price, :product
 
     def initialize(argument:, quantity:, unit_price:, product:)
       @argument = argument
