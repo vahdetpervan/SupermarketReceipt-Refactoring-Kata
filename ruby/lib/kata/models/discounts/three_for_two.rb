@@ -1,6 +1,5 @@
 module Kata::Discounts
   class ThreeForTwo
-    attr_reader :product
     def initialize(product:)
       @product = product
     end
@@ -8,7 +7,7 @@ module Kata::Discounts
     def calculate(quantity:, unit_price:)
       item_units_for_discount = quantity.to_i / 3
       discount_amount = quantity * unit_price - ((item_units_for_discount * 2 * unit_price) + quantity.to_i % 3 * unit_price)
-      Kata::Discount.new(product, "3 for 2", discount_amount)
+      Kata::Discount.new(@product, "3 for 2", discount_amount)
     end
   end
 end
