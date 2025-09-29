@@ -9,7 +9,7 @@ module Kata::Discounts
       @product = product
     end
 
-    def calculate
+    def calculate(quantity: nil, unit_price: nil)
       item_units_for_discount = @quantity.to_i / 5
       discount_total = @unit_price * @quantity - (argument * item_units_for_discount + @quantity.to_i % 5 * @unit_price)
       Kata::Discount.new(product, 5.to_s + " for " + argument.to_s, discount_total)
