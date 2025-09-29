@@ -1,7 +1,7 @@
 module Kata::Discounts
   class ThreeForTwo
     attr_reader :product
-    def initialize(quantity:, unit_price:, product:)
+    def initialize(quantity: nil, unit_price: nil, product:)
       @product = product
     end
 
