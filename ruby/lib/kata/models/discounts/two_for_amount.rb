@@ -1,9 +1,7 @@
 module Kata::Discounts
   class TwoForAmount
-    def initialize(argument:, quantity:, unit_price:, product:)
+    def initialize(argument:, quantity: nil, unit_price: nil, product:)
       @argument = argument
-      @quantity = quantity
-      @unit_price = unit_price
       @product = product
     end
 
