@@ -13,7 +13,7 @@ class Kata::Offer
     when Kata::SpecialOfferType::TWO_FOR_AMOUNT
       return Kata::Discounts::TwoForAmount.new(argument:, product:).calculate(quantity:, unit_price:)
     when Kata::SpecialOfferType::THREE_FOR_TWO
-      return Kata::Discounts::ThreeForTwo.new(quantity:, unit_price:, product:).calculate(quantity:, unit_price:)
+      return Kata::Discounts::ThreeForTwo.new(product:).calculate(quantity:, unit_price:)
     when Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
       return Kata::Discounts::TenPercent.new(quantity:, unit_price:, argument:, product:).calculate
     when Kata::SpecialOfferType::FIVE_FOR_AMOUNT
