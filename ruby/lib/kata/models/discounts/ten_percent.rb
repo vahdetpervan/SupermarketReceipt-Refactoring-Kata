@@ -2,7 +2,7 @@ module Kata::Discounts
   class TenPercent
     attr_reader :argument, :product
 
-    def initialize(quantity:, unit_price:, argument:, product:)
+    def initialize(quantity: nil, unit_price: nil, argument:, product:)
       @argument = argument
       @product = product
     end
