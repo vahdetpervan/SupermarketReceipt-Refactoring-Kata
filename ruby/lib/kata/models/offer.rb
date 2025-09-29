@@ -9,7 +9,10 @@ class Kata::Offer
   end
 
   def discount(quantity:, unit_price:)
-    return Kata::Discounts::TwoForAmount.new(argument:, quantity:, unit_price:, product:).calculate if offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+    case @offer_type
+    when Kata::SpecialOfferType::TWO_FOR_AMOUNT
+      return Kata::Discounts::TwoForAmount.new(argument:, quantity:, unit_price:, product:).calculate
+    end
     return Kata::Discounts::ThreeForTwo.new(quantity:, unit_price:, product:).calculate if offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
     return Kata::Discounts::TenPercent.new(quantity:, unit_price:, argument:, product:).calculate if offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
 
