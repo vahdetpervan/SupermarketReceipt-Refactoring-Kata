@@ -2,7 +2,7 @@ module Kata::Discounts
   class FiveForAmountDiscount
     attr_reader :quantity, :unit_price, :argument, :product
 
-    def initialize(quantity:, unit_price:, argument:, product:)
+    def initialize(quantity: nil, unit_price: nil, argument:, product:)
       @argument = argument
       @product = product
     end
