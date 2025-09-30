@@ -20,4 +20,14 @@ class Kata::Offer
       Kata::Discounts::FiveForAmount.new(argument:, product:).calculate(quantity:, unit_price:)
     end
   end
+
+  private
+
+  def discount_classes
+    {
+      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
+      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercent,
+      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
+    }
+  end
 end
