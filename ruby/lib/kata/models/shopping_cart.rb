@@ -14,10 +14,6 @@ class Kata::ShoppingCart
     nil
   end
 
-  def product_quantities
-    @product_quantities
-  end
-
   def add_item_quantity(product, quantity)
     @items << Kata::ProductQuantity.new(product, quantity)
     if @product_quantities.key?(product)
