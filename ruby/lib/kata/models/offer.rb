@@ -12,7 +12,7 @@ class Kata::Offer
     return discount_classes[@offer_type].new(argument:, product:).calculate(quantity:, unit_price:) if discount_classes[@offer_type]
     case @offer_type
     when Kata::SpecialOfferType::THREE_FOR_TWO
-      Kata::Discounts::ThreeForTwo.new(product:).calculate(quantity:, unit_price:)
+      Kata::Discounts::ThreeForTwo.new(product:).calculate(quantity:, unit_price:) if @offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
     end
   end
 
