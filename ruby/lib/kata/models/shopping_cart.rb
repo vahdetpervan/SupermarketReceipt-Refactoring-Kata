@@ -7,7 +7,6 @@ class Kata::ShoppingCart
 
   def add_item(product)
     add_item_quantity(product, 1.0)
-    nil
   end
 
   def add_item_quantity(product, quantity)
