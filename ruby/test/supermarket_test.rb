@@ -32,8 +32,8 @@ class SupermarketTest < Minitest::Test
   end
 
   def test_two_normal_items
-    @the_cart.add_item(@toothbrush)
-    @the_cart.add_item(@rice)
+    @the_cart.add_item_quantity(@toothbrush)
+    @the_cart.add_item_quantity(@rice)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40).print_receipt(receipt)
   end
