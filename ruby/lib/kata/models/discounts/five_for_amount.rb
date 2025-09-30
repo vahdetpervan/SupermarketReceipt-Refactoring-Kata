@@ -1,5 +1,5 @@
 module Kata::Discounts
-  class FiveForAmountDiscount
+  class FiveForAmount
     def initialize(argument:, product:)
       @argument = argument
       @product = product
