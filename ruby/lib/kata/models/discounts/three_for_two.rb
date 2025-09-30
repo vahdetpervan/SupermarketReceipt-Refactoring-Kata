@@ -1,7 +1,7 @@
 module Kata::Discounts
   class ThreeForTwo
     def initialize(options = {}, product:)
-      @product = product
+      @product = options[:product]
     end
 
     def calculate(quantity:, unit_price:)
