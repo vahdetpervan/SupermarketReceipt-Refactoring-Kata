@@ -11,7 +11,7 @@ class Kata::Offer
   def discount(quantity:, unit_price:)
     return discount_classes[@offer_type].new(argument:, product:).calculate(quantity:, unit_price:) if discount_classes[@offer_type]
 
-    Kata::Discounts::ThreeForTwo.new({ product: }).calculate(quantity:, unit_price:)
+    Kata::Discounts::ThreeForTwo.new({ argument:, product: }).calculate(quantity:, unit_price:)
   end
 
   private
