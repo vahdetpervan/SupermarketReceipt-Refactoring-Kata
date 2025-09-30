@@ -9,6 +9,7 @@ class Kata::Offer
   end
 
   def discount(quantity:, unit_price:)
+    return discount_classes[@offer_type].new(argument:, product:).calculate(quantity:, unit_price:) if discount_classes[@offer_type]
     case @offer_type
     when Kata::SpecialOfferType::TWO_FOR_AMOUNT
       Kata::Discounts::TwoForAmount.new(argument:, product:).calculate(quantity:, unit_price:)
