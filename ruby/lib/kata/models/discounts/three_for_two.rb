@@ -1,6 +1,6 @@
 module Kata::Discounts
   class ThreeForTwo
-    def initialize(options = {}, product:)
+    def initialize(options = {})
       @product = options[:product]
     end
 
