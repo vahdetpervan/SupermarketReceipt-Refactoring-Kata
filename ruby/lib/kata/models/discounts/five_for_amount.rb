@@ -1,6 +1,6 @@
 module Kata::Discounts
   class FiveForAmount
-    def initialize(options = {}, argument: nil, product: nil)
+    def initialize(options = {})
       @argument = options[:argument]
       @product = options[:product]
     end
