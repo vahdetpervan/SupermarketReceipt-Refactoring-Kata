@@ -2,7 +2,7 @@ class Kata::ShoppingCart
   attr_reader :items
   def initialize
     @items = []
-    @product_quantities = {}
+    @product_quantities = Hash.new(0)
   end
 
   def add_item_quantity(product, quantity = 1)
