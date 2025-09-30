@@ -1,8 +1,8 @@
 module Kata::Discounts
   class TenPercent
     def initialize(options = {}, argument: nil, product: nil)
-      @argument = argument
-      @product = product
+      @argument = options[:argument]
+      @product = options[:product]
     end
 
     def calculate(quantity:, unit_price:)
