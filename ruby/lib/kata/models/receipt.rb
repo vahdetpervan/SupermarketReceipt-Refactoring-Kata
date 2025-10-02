@@ -19,7 +19,6 @@ class Kata::Receipt
 
   def add_discount(discount)
     @discounts << discount
-    nil
   end
 
   def discounts
