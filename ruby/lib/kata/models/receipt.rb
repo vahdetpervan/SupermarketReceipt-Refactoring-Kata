@@ -20,8 +20,4 @@ class Kata::Receipt
   def add_discount(discount)
     @discounts << discount
   end
-
-  # def discounts
-  #   Array.new @discounts
-  # end
 end
