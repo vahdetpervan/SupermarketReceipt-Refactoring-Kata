@@ -17,11 +17,6 @@ class Kata::Receipt
     @items << Kata::ReceiptItem.new(product, quantity, price, total_price)
   end
 
-  # def items
-  #  Array.new @items
-  #
-  # end
-
   def add_discount(discount)
     @discounts << discount
     nil
