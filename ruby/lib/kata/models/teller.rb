@@ -11,7 +11,7 @@ class Kata::Teller
   end
 
   def checks_out_articles_from(the_cart)
-    for pq in the_cart.items do
+    the_cart.items.each do |pq|
       p = pq.product
       quantity = pq.quantity
       unit_price = @catalog.unit_price(p)
