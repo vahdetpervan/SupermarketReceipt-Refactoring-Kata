@@ -7,7 +7,7 @@ class Kata::Receipt
   end
 
   def total_price
-    return @items.sum(&:total_price) - @discounts.sum(&:discount_amount)
+    @items.sum(&:total_price) - @discounts.sum(&:discount_amount)
   end
 
   def add_product(product, quantity, price, total_price)
