@@ -7,8 +7,9 @@ class Kata::Receipt
   end
 
   def total_price
-    total = 0.0
-    @items.each { |item| total += item.total_price }
+    total = 0
+    total += @items.sum(&:total_price)
+    # @items.each { |item| total += item.total_price }
     @discounts.each { |discount| total -= discount.discount_amount }
     total
   end
