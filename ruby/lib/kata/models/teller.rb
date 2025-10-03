@@ -11,7 +11,6 @@ class Kata::Teller
   end
 
   def checks_out_articles_from(the_cart)
-    product_quantities = the_cart.items
     for pq in the_cart.items do
       p = pq.product
       quantity = pq.quantity
