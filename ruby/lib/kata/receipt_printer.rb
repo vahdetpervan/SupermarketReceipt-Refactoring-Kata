@@ -13,7 +13,7 @@ class Kata::ReceiptPrinter
 
   private
 
-  def print_items(receipt, result)
+  def print_items(receipt, result = "")
     receipt.items.each do |item|
       price = "%.2f" % item.total_price
       quantity = present_quantity(item)
