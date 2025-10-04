@@ -8,7 +8,7 @@ class Kata::ReceiptPrinter
     result = ""
     receipt.items.each do |item|
       price = "%.2f" % item.total_price
-      quantity = self.class.present_quantity(item)
+      quantity = present_quantity(item)
       name = item.product.name
       unit_price = "%.2f" % item.price
 
