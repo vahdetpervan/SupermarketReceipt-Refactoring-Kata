@@ -24,7 +24,7 @@ class Kata::ReceiptPrinter
 
       line += "  " + unit_price + " * " + present_quantity(item) + "\n" if item.quantity != 1
 
-      result.concat(line);
+      result.concat(line)
     end
     result
   end
@@ -39,9 +39,9 @@ class Kata::ReceiptPrinter
       result.concat(product_presentation)
       result.concat(")")
       result.concat(whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
-      result.concat("-");
-      result.concat(price_presentation);
-      result.concat("\n");
+      result.concat("-")
+      result.concat(price_presentation)
+      result.concat("\n")
     end
   end
 
