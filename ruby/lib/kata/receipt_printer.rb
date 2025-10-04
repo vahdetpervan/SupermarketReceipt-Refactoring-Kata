@@ -29,7 +29,7 @@ class Kata::ReceiptPrinter
       result.concat("(")
       result.concat(product_presentation)
       result.concat(")")
-      result.concat(self.class.whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
+      result.concat(whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
       result.concat("-");
       result.concat(price_presentation);
       result.concat("\n");
