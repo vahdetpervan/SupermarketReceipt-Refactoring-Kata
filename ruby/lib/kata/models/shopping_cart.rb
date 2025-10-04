@@ -1,5 +1,5 @@
 class Kata::ShoppingCart
-  attr_reader :items
+  attr_reader :items, :product_quantities
   def initialize
     @items = []
     @product_quantities = Hash.new(0)
