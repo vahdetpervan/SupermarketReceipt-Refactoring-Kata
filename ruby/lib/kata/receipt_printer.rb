@@ -47,9 +47,6 @@ class Kata::ReceiptPrinter
   end
 
   def whitespace(whitespace_size)
-    return ' ' * whitespace_size
-    whitespace = ''
-    whitespace_size.times { whitespace.concat(' ') }
-    whitespace
+    ' ' * whitespace_size
   end
 end
