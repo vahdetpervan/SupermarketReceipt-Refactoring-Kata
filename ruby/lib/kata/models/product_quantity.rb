@@ -2,9 +2,9 @@ class Kata::ProductQuantity
 
   attr_reader :product, :quantity
 
-  def initialize(product, weight)
+  def initialize(product, quantity)
     @product = product
-    @quantity = weight
+    @quantity = quantity
   end
 
 end
