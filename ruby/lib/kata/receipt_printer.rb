@@ -42,6 +42,24 @@ class Kata::ReceiptPrinter
     result
   end
 
+  private
+
+  def print_discounts(receipt, result)
+    receipt.discounts.each do |discount|
+      product_presentation = discount.product.name
+      price_presentation = "%.2f" % discount.discount_amount
+      description = discount.description
+      result.concat(description)
+      result.concat("(")
+      result.concat(product_presentation)
+      result.concat(")")
+      result.concat(whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
+      result.concat("-");
+      result.concat(price_presentation);
+      result.concat("\n");
+    end
+  end
+
   def present_quantity(item)
     Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
   end
