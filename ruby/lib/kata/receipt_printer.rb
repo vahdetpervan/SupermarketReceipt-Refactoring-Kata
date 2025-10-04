@@ -29,6 +29,7 @@ class Kata::ReceiptPrinter
 
       result.concat(line);
     end
+    result
   end
 
   def print_discounts(receipt, result)
