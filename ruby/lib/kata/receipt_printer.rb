@@ -6,7 +6,7 @@ class Kata::ReceiptPrinter
 
   def print_receipt(receipt)
     result = ""
-    print_items(receipt, result)
+    result = print_items(receipt, result)
     print_discounts(receipt, result)
     print_pricing(receipt, result)
   end
