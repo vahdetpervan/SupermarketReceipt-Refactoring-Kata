@@ -39,11 +39,11 @@ class Kata::ReceiptPrinter
     total = "Total: "
     whitespace = self.class.whitespace(@columns - total.size - price_presentation.size)
     result.concat(total, whitespace, price_presentation)
-    return result.to_s
+    result.to_s
   end
 
   def self.present_quantity(item)
-    return Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
+    Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
   end
 
   def self.whitespace(whitespace_size)
@@ -51,7 +51,7 @@ class Kata::ReceiptPrinter
     whitespace_size.times do
       whitespace.concat(' ')
     end
-    return whitespace
+    whitespace
   end
 
 end
