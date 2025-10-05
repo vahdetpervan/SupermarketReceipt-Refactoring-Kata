@@ -33,8 +33,7 @@ class Kata::ReceiptPrinter
     receipt.discounts.each do |discount|
       price_presentation = "%.2f" % discount.discount_amount
       result.concat(discount.description)
-      result.concat("(")
-      result.concat(discount.product.name)
+      result.concat("(#{discount.product.name}")
       result.concat(")")
       result.concat(whitespace(@columns - 3 - discount.product.name.size - discount.description.size - price_presentation.size))
       result.concat("-")
