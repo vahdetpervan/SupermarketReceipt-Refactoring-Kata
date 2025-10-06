@@ -9,15 +9,6 @@ class Kata::Teller
     @offers[product] = offer_for(offer_type, product, argument)
   end
 
-  def offer_for(offer_type, product, argument)
-    {
-      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
-      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercent,
-      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount,
-      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo
-    }[offer_type].new({ argument:, product: })
-  end
-
   def checks_out_articles_from(the_cart)
     @receipt = Kata::Receipt.new
     the_cart.items.each do |product_quantity|
@@ -29,6 +20,17 @@ class Kata::Teller
     the_cart.handle_offers(@receipt, @offers, @catalog)
 
     @receipt
+  end
+
+  private
+
+  def offer_for(offer_type, product, argument)
+    {
+      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
+      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercent,
+      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount,
+      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo
+    }[offer_type].new({ argument:, product: })
   end
 
 end
