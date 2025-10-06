@@ -15,11 +15,10 @@ class Kata::ReceiptPrinter
   def print_items(receipt)
     receipt.items.each_with_object("") do |item, result|
       price = "%.2f" % item.total_price
-      name = item.product.name
       unit_price = "%.2f" % item.price
 
-      whitespace_size = @columns - name.size - price.size
-      line = name + whitespace(whitespace_size) + price + "\n"
+      whitespace_size = @columns - item.product.name.size - price.size
+      line = item.product.name + whitespace(whitespace_size) + price + "\n"
 
       line += "  " + unit_price + " * " + present_quantity(item) + "\n" if item.quantity != 1
 
