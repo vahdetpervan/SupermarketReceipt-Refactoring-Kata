@@ -13,8 +13,7 @@ class Kata::ReceiptPrinter
   private
 
   def print_items(receipt)
-    result = ""
-    receipt.items.each do |item|
+    receipt.items.each_with_object("") do |item, result|
       price = "%.2f" % item.total_price
       name = item.product.name
       unit_price = "%.2f" % item.price
@@ -26,7 +25,6 @@ class Kata::ReceiptPrinter
 
       result.concat(line)
     end
-    result
   end
 
   def print_discounts(receipt, result)
