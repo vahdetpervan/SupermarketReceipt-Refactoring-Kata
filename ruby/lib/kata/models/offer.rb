@@ -1,6 +1,6 @@
 class Kata::Offer
   def initialize(offer_type, product, argument)
-    @discount_classes = {
+    @discount = {
       Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
       Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercent,
       Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount,
@@ -9,6 +9,6 @@ class Kata::Offer
   end
 
   def discount(quantity:, unit_price:)
-    @discount_classes.calculate(quantity:, unit_price:)
+    @discount.calculate(quantity:, unit_price:)
   end
 end
