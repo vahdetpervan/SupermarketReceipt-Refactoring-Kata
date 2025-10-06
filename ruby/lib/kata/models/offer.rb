@@ -1,4 +1,9 @@
+require 'forwardable'
+
 class Kata::Offer
+  extend Forwardable
+
+  def_delegators :@discount, :discount
   def initialize(offer_type, product, argument)
     @discount = {
       Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
@@ -6,9 +11,5 @@ class Kata::Offer
       Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount,
       Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo
     }[offer_type].new({ argument:, product: })
-  end
-
-  def discount(quantity:, unit_price:)
-    @discount.calculate(quantity:, unit_price:)
   end
 end
