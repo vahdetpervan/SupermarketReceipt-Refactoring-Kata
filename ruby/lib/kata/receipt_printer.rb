@@ -44,9 +44,7 @@ class Kata::ReceiptPrinter
     result.concat(total, price_presentation)
   end
 
-  def insert_blank_line(result)
-    result.concat("\n")
-  end
+  def insert_blank_line(result) = result.concat("\n")
 
   def present_quantity(item)
     Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
