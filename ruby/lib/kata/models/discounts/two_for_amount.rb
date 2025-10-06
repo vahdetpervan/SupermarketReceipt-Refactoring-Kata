@@ -10,5 +10,6 @@ module Kata::Discounts
       discount_n = unit_price * quantity - total
       Kata::Discount.new(@product, "2 for " + @argument.to_s, discount_n)
     end
+    alias_method :discount, :calculate
   end
 end

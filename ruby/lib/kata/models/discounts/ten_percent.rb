@@ -8,5 +8,6 @@ module Kata::Discounts
     def calculate(quantity:, unit_price:)
       Kata::Discount.new(@product, @argument.to_s + "% off", quantity * unit_price * @argument / 100.0)
     end
+    alias_method :discount, :calculate
   end
 end
