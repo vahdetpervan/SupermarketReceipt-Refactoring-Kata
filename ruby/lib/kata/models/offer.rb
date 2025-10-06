@@ -3,7 +3,6 @@ class Kata::Offer
   attr_reader :product, :offer_type, :argument
 
   def initialize(offer_type, product, argument)
-    @offer_type = offer_type
     @argument = argument
     @product = product
     @discount_classes = {
@@ -11,7 +10,7 @@ class Kata::Offer
       Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercent,
       Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount,
       Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo
-    }[@offer_type].new({ argument:, product: })
+    }[offer_type].new({ argument:, product: })
   end
 
   def discount(quantity:, unit_price:)
