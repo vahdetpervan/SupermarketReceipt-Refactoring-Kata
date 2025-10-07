@@ -31,36 +31,35 @@ class Kata::ShoppingCart
     @product_quantities.keys.each do |product|
       quantity = @product_quantities[product]
       if offers.key?(product)
-        offer = offers[product]
         unit_price = catalog.unit_price(product)
         quantity_as_int = quantity.to_i
         discount = nil
         x = 1
-        if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
+        if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
           x = 3
 
-        elsif offer.offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+        elsif offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
           x = 2
           if quantity_as_int >= 2
-            total = offer.argument * (quantity_as_int / x) + quantity_as_int % 2 * unit_price
+            total = offers[product].argument * (quantity_as_int / x) + quantity_as_int % 2 * unit_price
             discount_n = unit_price * quantity - total
-            discount = Kata::Discount.new(product, "2 for " + offer.argument.to_s, discount_n)
+            discount = Kata::Discount.new(product, "2 for " + offers[product].argument.to_s, discount_n)
           end
 
         end
-        x = 5 if offer.offer_type == Kata::SpecialOfferType:: FIVE_FOR_AMOUNT
+        x = 5 if offers[product].offer_type == Kata::SpecialOfferType:: FIVE_FOR_AMOUNT
 
         number_of_x = quantity_as_int / x
-        if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity_as_int > 2
+        if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity_as_int > 2
           discount_amount = quantity * unit_price - ((number_of_x * 2 * unit_price) + quantity_as_int % 3 * unit_price)
           discount = Kata::Discount.new(product, "3 for 2", discount_amount)
         end
-        if offer.offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
-          discount = Kata::Discount.new(product, offer.argument.to_s + "% off", quantity * unit_price * offer.argument / 100.0)
+        if offers[product].offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
+          discount = Kata::Discount.new(product, offers[product].argument.to_s + "% off", quantity * unit_price * offers[product].argument / 100.0)
         end
-        if offer.offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity_as_int >= 5
-          discount_total = unit_price * quantity - (offer.argument * number_of_x + quantity_as_int % 5 * unit_price)
-          discount = Kata::Discount.new(product, x.to_s + " for " + offer.argument.to_s, discount_total)
+        if offers[product].offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity_as_int >= 5
+          discount_total = unit_price * quantity - (offers[product].argument * number_of_x + quantity_as_int % 5 * unit_price)
+          discount = Kata::Discount.new(product, x.to_s + " for " + offers[product].argument.to_s, discount_total)
         end
 
         receipt.add_discount(discount) if discount
