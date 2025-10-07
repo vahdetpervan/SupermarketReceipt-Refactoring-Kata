@@ -48,9 +48,8 @@ class Kata::ShoppingCart
           end
 
         end
-        if offer.offer_type == Kata::SpecialOfferType:: FIVE_FOR_AMOUNT
-          x = 5
-        end
+        x = 5 if offer.offer_type == Kata::SpecialOfferType:: FIVE_FOR_AMOUNT
+
         number_of_x = quantity_as_int / x
         if offer.offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity_as_int > 2
           discount_amount = quantity * unit_price - ((number_of_x * 2 * unit_price) + quantity_as_int % 3 * unit_price)
