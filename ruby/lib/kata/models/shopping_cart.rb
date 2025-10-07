@@ -31,8 +31,6 @@ class Kata::ShoppingCart
     @product_quantities.each do |product, quantity|
       if offers.key?(product)
         unit_price = catalog.unit_price(product)
-        x = 1
-
         if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT && quantity.to_i >= 2
           total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
           discount_n = unit_price * quantity - total
