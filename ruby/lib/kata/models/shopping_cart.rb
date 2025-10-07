@@ -32,7 +32,7 @@ class Kata::ShoppingCart
       next unless offers.key?(product)
 
       unit_price = catalog.unit_price(product)
-      if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT && quantity.to_i >= 2
+      if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
         total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
         discount_n = unit_price * quantity - total
         discount = Kata::Discount.new(product, "2 for " + offers[product].argument.to_s, discount_n)
