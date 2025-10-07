@@ -10,7 +10,6 @@ class Kata::ShoppingCart
     @items << Kata::ProductQuantity.new(product, quantity)
     product_quantities[product] += quantity
   end
-  alias_method :add_item, :add_item_quantity
 
   def handle_offers(receipt, offers, catalog)
     @product_quantities.each do |product, quantity|
