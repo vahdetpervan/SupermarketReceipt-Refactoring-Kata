@@ -34,10 +34,9 @@ class Kata::ShoppingCart
         quantity_as_int = quantity.to_i
         discount = nil
         x = 1
-        if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-          x = 3
+        x = 3 if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
 
-        elsif offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+        if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
           x = 2
           if quantity_as_int >= 2
             total = offers[product].argument * (quantity_as_int / x) + quantity_as_int % 2 * unit_price
