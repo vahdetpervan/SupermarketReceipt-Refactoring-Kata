@@ -1,12 +1,9 @@
 class Kata::ShoppingCart
+  attr_reader :items
 
   def initialize
     @items = []
     @product_quantities = {}
-  end
-
-  def items
-    Array.new @items
   end
 
   def add_item(product)
