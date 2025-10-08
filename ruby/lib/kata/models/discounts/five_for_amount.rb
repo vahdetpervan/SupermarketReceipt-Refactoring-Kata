@@ -7,7 +7,7 @@ module Kata::Discounts
       @quantity = options[:quantity]
     end
 
-    def calculate(product, argument, unit_price, quantity)
+    def calculate
       return unless @quantity.to_i >= 5
 
       discount_total = @unit_price * @quantity - (@argument * (@quantity.to_i / 5) + @quantity.to_i % 5 * @unit_price)
