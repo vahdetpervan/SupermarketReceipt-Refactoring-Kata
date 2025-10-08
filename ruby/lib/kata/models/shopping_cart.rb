@@ -31,7 +31,7 @@ class Kata::ShoppingCart
   end
 
   def three_for_two_discount(product, unit_price, quantity)
-    Kata::Discounts::ThreeForTwo.new.calculate(product, unit_price, quantity)
+    Kata::Discounts::ThreeForTwo.new({ product:, unit_price:, quantity: }).calculate(product, unit_price, quantity)
   end
 
   def ten_percent_discount(offers, product, unit_price, quantity)
