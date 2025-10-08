@@ -17,9 +17,7 @@ class Kata::ShoppingCart
 
       unit_price = catalog.unit_price(product)
       if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-        total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
-        discount_n = unit_price * quantity - total
-        discount = Kata::Discount.new(product, "2 for " + offers[product].argument.to_s, discount_n)
+        discount = two_for_amount_discount(offers, product, unit_price, quantity)
       end
       if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity.to_i > 2
         discount = three_for_two_discount(product, unit_price, quantity)
@@ -36,6 +34,12 @@ class Kata::ShoppingCart
   end
 
   private
+
+  def two_for_amount_discount(offers, product, unit_price, quantity)
+    total = offers[product].argument * (quantity.to_i / 2) + quantity.to_i % 2 * unit_price
+    discount_n = unit_price * quantity - total
+    Kata::Discount.new(product, "2 for " + offers[product].argument.to_s, discount_n)
+  end
 
   def three_for_two_discount(product, unit_price, quantity)
     discount_amount = quantity * unit_price - ((quantity.to_i / 3 * 2 * unit_price) + quantity.to_i % 3 * unit_price)
