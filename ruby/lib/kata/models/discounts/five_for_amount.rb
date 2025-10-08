@@ -1,6 +1,6 @@
 module Kata::Discounts
   class FiveForAmount
-    def calculate(offers, product, unit_price, quantity)
+    def calculate(offers, product, unit_price, quantity, argument = nil)
       return unless quantity.to_i >= 5
 
       discount_total = unit_price * quantity - (offers[product].argument * (quantity.to_i / 5) + quantity.to_i % 5 * unit_price)
