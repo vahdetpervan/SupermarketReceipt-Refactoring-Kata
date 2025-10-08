@@ -27,7 +27,7 @@ class Kata::ShoppingCart
   private
 
   def two_for_amount_discount(offers, product, unit_price, quantity)
-    Kata::Discounts::TwoForAmount.new({offers:, product:, unit_price:, quantity:, argument: offers[product]}).calculate
+    Kata::Discounts::TwoForAmount.new({offers:, product:, unit_price:, quantity:, argument: offers[product].argument}).calculate
   end
 
   def three_for_two_discount(product, unit_price, quantity)
