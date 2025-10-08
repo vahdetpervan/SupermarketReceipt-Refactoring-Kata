@@ -35,7 +35,7 @@ class Kata::ShoppingCart
   end
 
   def ten_percent_discount(offers, product, unit_price, quantity)
-    Kata::Discount.new(product, offers[product].argument.to_s + "% off", quantity * unit_price * offers[product].argument / 100.0)
+    Kata::Discounts::TenPercentDiscount.new.calculate(offers, product, unit_price, quantity)
   end
 
   def five_for_amount_discount(offers, product, unit_price, quantity)
