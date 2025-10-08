@@ -1,5 +1,12 @@
 module Kata::Discounts
   class FiveForAmount
+    def initialize(options = {})
+      @product = options[:product]
+      @argument = options[:argument]
+      @unit_price = options[:unit_price]
+      @quantity = options[:quantity]
+    end
+
     def calculate(product, argument, unit_price, quantity)
       return unless quantity.to_i >= 5
 
