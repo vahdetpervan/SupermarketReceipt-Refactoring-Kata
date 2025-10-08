@@ -15,11 +15,10 @@ class Kata::ShoppingCart
     @product_quantities.each do |product, quantity|
       next unless offers.key?(product)
 
-      unit_price = catalog.unit_price(product)
-      discount = two_for_amount_discount(offers, product, unit_price, quantity) if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
-      discount = three_for_two_discount(product, unit_price, quantity) if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity.to_i > 2
-      discount = ten_percent_discount(offers, product, unit_price, quantity) if offers[product].offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
-      discount = five_for_amount_discount(offers, product, unit_price, quantity) if offers[product].offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
+      discount = two_for_amount_discount(offers, product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
+      discount = three_for_two_discount(product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO && quantity.to_i > 2
+      discount = ten_percent_discount(offers, product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
+      discount = five_for_amount_discount(offers, product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT && quantity.to_i >= 5
 
       receipt.add_discount(discount) if discount
     end
