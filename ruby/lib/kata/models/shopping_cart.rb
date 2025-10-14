@@ -4,6 +4,9 @@ class Kata::ShoppingCart
   def initialize
     @items = []
     @product_quantities = Hash.new(0)
+    @discount_classes = {
+      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount
+    }.freeze
   end
 
   def add_item_quantity(product, quantity = 1)
