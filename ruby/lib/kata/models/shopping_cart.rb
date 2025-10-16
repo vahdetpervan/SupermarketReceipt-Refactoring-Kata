@@ -26,22 +26,4 @@ class Kata::ShoppingCart
       receipt.add_discount(discount) if discount
     end
   end
-
-  private
-
-  def two_for_amount_discount(offers, product, unit_price, quantity)
-    Kata::Discounts::TwoForAmount.new({offers:, product:, unit_price:, quantity:, argument: offers[product].argument}).calculate
-  end
-
-  def three_for_two_discount(product, unit_price, quantity)
-    Kata::Discounts::ThreeForTwo.new({ product:, unit_price:, quantity: }).calculate
-  end
-
-  def ten_percent_discount(offers, product, unit_price, quantity)
-    Kata::Discounts::TenPercentDiscount.new({ product:, argument: offers[product].argument, unit_price:, quantity: }).calculate
-  end
-
-  def five_for_amount_discount(offers, product, unit_price, quantity)
-    Kata::Discounts::FiveForAmount.new({ product:, argument: offers[product].argument, unit_price:, quantity: }).calculate
-  end
 end
