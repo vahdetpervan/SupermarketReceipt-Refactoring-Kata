@@ -42,6 +42,8 @@ class Kata::ReceiptPrinter
     result.to_s
   end
 
+  private
+
   def present_quantity(item)
     Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
   end
