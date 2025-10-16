@@ -5,18 +5,7 @@ class Kata::ReceiptPrinter
   end
 
   def print_receipt(receipt)
-    result = ""
-    receipt.items.each do |item|
-      price = "%.2f" % item.total_price
-      name = item.product.name
-      unit_price = "%.2f" % item.price
-
-      whitespace_size = @columns - name.size - price.size
-      line = name + whitespace(whitespace_size) + price + "\n"
-      line += "  " + unit_price + " * " + present_quantity(item) + "\n" if item.quantity != 1
-
-      result.concat(line)
-    end
+    result = print_items(receipt.items, "")
     receipt.discounts.each do |discount|
       product_presentation = discount.product.name
       price_presentation = "%.2f" % discount.discount_amount
