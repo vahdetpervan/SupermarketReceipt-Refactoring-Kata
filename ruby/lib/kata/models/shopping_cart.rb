@@ -6,7 +6,8 @@ class Kata::ShoppingCart
     @product_quantities = Hash.new(0)
     @discount_classes = {
       Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
-      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo
+      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
+      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount
     }.freeze
   end
 
@@ -21,7 +22,6 @@ class Kata::ShoppingCart
 
       discount = @discount_classes[offers[product].offer_type].new({offers:, product:, unit_price: catalog.unit_price(product), quantity:, argument: offers[product].argument}).calculate if offers[product].offer_type == Kata::SpecialOfferType::TWO_FOR_AMOUNT
       discount = @discount_classes[offers[product].offer_type].new({ product:, unit_price: catalog.unit_price(product), quantity: }).calculate if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-      # discount = three_for_two_discount(product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
       discount = ten_percent_discount(offers, product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
       discount = five_for_amount_discount(offers, product, catalog.unit_price(product), quantity) if offers[product].offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT
 
