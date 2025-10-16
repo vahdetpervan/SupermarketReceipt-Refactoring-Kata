@@ -5,7 +5,8 @@ class Kata::ShoppingCart
     @items = []
     @product_quantities = Hash.new(0)
     @discount_classes = {
-      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount
+      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
+      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo
     }.freeze
   end
 
