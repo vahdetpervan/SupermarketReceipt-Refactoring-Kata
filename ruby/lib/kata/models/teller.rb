@@ -5,9 +5,7 @@ class Kata::Teller
     @offers = {}
   end
 
-  def add_special_offer(offer_type, product, argument)
-    @offers[product] = Kata::Offer.new(offer_type, product, argument)
-  end
+  def add_special_offer(offer_type, product, argument) = @offers[product] = Kata::Offer.new(offer_type, product, argument)
 
   def checks_out_articles_from(the_cart)
     receipt = Kata::Receipt.new
