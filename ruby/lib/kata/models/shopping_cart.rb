@@ -1,7 +1,7 @@
 require 'ostruct'
 
 class Kata::ShoppingCart
-  attr_reader :items, :product_quantities
+  attr_reader :product_quantities
 
   def initialize
     @items = []
