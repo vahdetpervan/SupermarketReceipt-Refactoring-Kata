@@ -4,7 +4,6 @@ class Kata::ShoppingCart
   attr_reader :product_quantities
 
   def initialize
-    @items = []
     @product_quantities = Hash.new(0)
     @discount_classes = {
       Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
@@ -15,7 +14,6 @@ class Kata::ShoppingCart
   end
 
   def add_item_quantity(product, quantity)
-    @items << ::OpenStruct.new(product:, quantity:)
     product_quantities[product] += quantity
   end
 
