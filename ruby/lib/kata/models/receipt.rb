@@ -1,5 +1,5 @@
 class Kata::Receipt
-  attr_reader :items
+  attr_reader :items, :discounts
 
   def initialize
     @items = []
@@ -26,9 +26,4 @@ class Kata::Receipt
     @discounts << discount
     nil
   end
-
-  def discounts
-    Array.new @discounts
-  end
-
 end
