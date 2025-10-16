@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class Kata::ShoppingCart
   attr_reader :items, :product_quantities
 
@@ -13,7 +15,8 @@ class Kata::ShoppingCart
   end
 
   def add_item_quantity(product, quantity)
-    @items << Kata::ProductQuantity.new(product, quantity)
+    @items << ::OpenStruct.new(product:, quantity:)
+    # @items << Kata::ProductQuantity.new(product, quantity)
     product_quantities[product] += quantity
   end
 
