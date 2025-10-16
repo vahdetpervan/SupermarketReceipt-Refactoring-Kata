@@ -13,9 +13,7 @@ class Kata::ShoppingCart
     }.freeze
   end
 
-  def add_item_quantity(product, quantity)
-    product_quantities[product] += quantity
-  end
+  def add_item_quantity(product, quantity) = product_quantities[product] += quantity
 
   def handle_offers(receipt, offers, catalog)
     @product_quantities.each do |product, quantity|
