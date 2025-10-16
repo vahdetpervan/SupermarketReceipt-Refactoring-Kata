@@ -8,7 +8,7 @@ class Kata::ReceiptPrinter
     result = ""
     receipt.items.each do |item|
       price = "%.2f" % item.total_price
-      quantity = self.class.present_quantity(item)
+      quantity = present_quantity(item)
       name = item.product.name
       unit_price = "%.2f" % item.price
 
@@ -40,6 +40,10 @@ class Kata::ReceiptPrinter
     whitespace = self.class.whitespace(@columns - total.size - price_presentation.size)
     result.concat(total, whitespace, price_presentation)
     result.to_s
+  end
+
+  def present_quantity(item)
+    Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
   end
 
   def self.present_quantity(item)
