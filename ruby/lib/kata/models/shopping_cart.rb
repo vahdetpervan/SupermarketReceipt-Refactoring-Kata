@@ -16,7 +16,6 @@ class Kata::ShoppingCart
 
   def add_item_quantity(product, quantity)
     @items << ::OpenStruct.new(product:, quantity:)
-    # @items << Kata::ProductQuantity.new(product, quantity)
     product_quantities[product] += quantity
   end
 
