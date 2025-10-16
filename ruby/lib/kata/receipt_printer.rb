@@ -13,7 +13,7 @@ class Kata::ReceiptPrinter
       unit_price = "%.2f" % item.price
 
       whitespace_size = @columns - name.size - price.size
-      line = name + self.class.whitespace(whitespace_size) + price + "\n"
+      line = name + whitespace(whitespace_size) + price + "\n"
 
       if item.quantity != 1
         line += "  " + unit_price + " * " + quantity + "\n"
@@ -29,7 +29,7 @@ class Kata::ReceiptPrinter
       result.concat("(")
       result.concat(product_presentation)
       result.concat(")")
-      result.concat(self.class.whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
+      result.concat(whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
       result.concat("-");
       result.concat(price_presentation);
       result.concat("\n");
@@ -37,13 +37,21 @@ class Kata::ReceiptPrinter
     result.concat("\n")
     price_presentation = "%.2f" % receipt.total_price.to_f
     total = "Total: "
-    whitespace = self.class.whitespace(@columns - total.size - price_presentation.size)
+    whitespace = whitespace(@columns - total.size - price_presentation.size)
     result.concat(total, whitespace, price_presentation)
     result.to_s
   end
 
   def present_quantity(item)
     Kata::ProductUnit::EACH == item.product.unit ? '%x' % item.quantity.to_i : '%.3f' % item.quantity
+  end
+
+  def whitespace(whitespace_size)
+    whitespace = ''
+    whitespace_size.times do
+      whitespace.concat(' ')
+    end
+    whitespace
   end
 
   def self.whitespace(whitespace_size)
