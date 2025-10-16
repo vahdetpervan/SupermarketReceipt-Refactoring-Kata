@@ -16,9 +16,7 @@ class Kata::Receipt
     total
   end
 
-  def add_product(product, quantity, price, total_price)
-    @items << Kata::ReceiptItem.new(product, quantity, price, total_price)
-  end
+  def add_product(product, quantity, price, total_price) = @items << Kata::ReceiptItem.new(product, quantity, price, total_price)
 
   def add_discount(discount) = @discounts << discount
 end
