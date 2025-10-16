@@ -1,5 +1,3 @@
-require 'ostruct'
-
 class Kata::ShoppingCart
   attr_reader :product_quantities
 
