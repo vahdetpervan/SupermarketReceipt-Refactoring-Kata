@@ -19,7 +19,7 @@ class Kata::ReceiptPrinter
         line += "  " + unit_price + " * " + quantity + "\n"
       end
 
-      result.concat(line);
+      result.concat(line)
     end
     receipt.discounts.each do |discount|
       product_presentation = discount.product.name
@@ -30,9 +30,9 @@ class Kata::ReceiptPrinter
       result.concat(product_presentation)
       result.concat(")")
       result.concat(whitespace(@columns - 3 - product_presentation.size - description.size - price_presentation.size))
-      result.concat("-");
-      result.concat(price_presentation);
-      result.concat("\n");
+      result.concat("-")
+      result.concat(price_presentation)
+      result.concat("\n")
     end
     result.concat("\n")
     price_presentation = "%.2f" % receipt.total_price
