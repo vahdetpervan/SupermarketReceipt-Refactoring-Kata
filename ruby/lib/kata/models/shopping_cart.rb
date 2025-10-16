@@ -22,9 +22,6 @@ class Kata::ShoppingCart
       next unless offers.key?(product)
 
       discount = @discount_classes[offers[product].offer_type].new({offers:, product:, unit_price: catalog.unit_price(product), quantity:, argument: offers[product].argument}).calculate
-      discount = @discount_classes[offers[product].offer_type].new({ product:, unit_price: catalog.unit_price(product), quantity: }).calculate if offers[product].offer_type == Kata::SpecialOfferType::THREE_FOR_TWO
-      discount = @discount_classes[offers[product].offer_type].new({offers:, product:, unit_price: catalog.unit_price(product), quantity:, argument: offers[product].argument}).calculate if offers[product].offer_type == Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT
-      discount = @discount_classes[offers[product].offer_type].new({offers:, product:, unit_price: catalog.unit_price(product), quantity:, argument: offers[product].argument}).calculate if offers[product].offer_type == Kata::SpecialOfferType::FIVE_FOR_AMOUNT
 
       receipt.add_discount(discount) if discount
     end
