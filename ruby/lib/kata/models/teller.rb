@@ -10,10 +10,9 @@ class Kata::Teller
 
   def checks_out_articles_from(the_cart)
     the_cart.product_quantities.each do |product, quantity|
-      unit_price = @catalog.unit_price(product)
-      price = quantity * unit_price
-      @receipt.add_product(product, quantity, unit_price, price) if product.unit == Kata::ProductUnit::KILO
-      quantity.times { @receipt.add_product(product, 1, unit_price, unit_price) } if product.unit == Kata::ProductUnit::EACH
+      price = quantity * @catalog.unit_price(product)
+      @receipt.add_product(product, quantity, @catalog.unit_price(product), price) if product.unit == Kata::ProductUnit::KILO
+      quantity.times { @receipt.add_product(product, 1, @catalog.unit_price(product), @catalog.unit_price(product)) } if product.unit == Kata::ProductUnit::EACH
     end
     the_cart.handle_offers(@receipt, @offers, @catalog)
     @receipt
