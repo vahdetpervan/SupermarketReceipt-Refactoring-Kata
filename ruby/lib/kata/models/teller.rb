@@ -12,11 +12,10 @@ class Kata::Teller
   def checks_out_articles_from(the_cart)
     receipt = Kata::Receipt.new
     product_quantities = the_cart.items
-    product_quantities.each do |product_quantity|
-      quantity = product_quantity.quantity
+    the_cart.items.each do |product_quantity|
       unit_price = @catalog.unit_price(product_quantity.product)
-      price = quantity * unit_price
-      receipt.add_product(product_quantity.product, quantity, unit_price, price)
+      price = product_quantity.quantity * unit_price
+      receipt.add_product(product_quantity.product, product_quantity.quantity, unit_price, price)
     end
     the_cart.handle_offers(receipt, @offers, @catalog)
 
