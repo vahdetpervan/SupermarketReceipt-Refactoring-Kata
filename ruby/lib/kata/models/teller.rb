@@ -3,6 +3,7 @@ class Kata::Teller
   def initialize(catalog)
     @catalog = catalog
     @offers = {}
+    @receipt = Kata::Receipt.new
   end
 
   def add_special_offer(offer_type, product, argument) = @offers[product] = Kata::Offer.new(offer_type, product, argument)
