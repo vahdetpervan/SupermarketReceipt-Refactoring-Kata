@@ -16,8 +16,6 @@ class Kata::Teller
       quantity.times { @receipt.add_product(product, 1, unit_price, unit_price) } if product.unit == Kata::ProductUnit::EACH
     end
     the_cart.handle_offers(@receipt, @offers, @catalog)
-
     @receipt
   end
-
 end
