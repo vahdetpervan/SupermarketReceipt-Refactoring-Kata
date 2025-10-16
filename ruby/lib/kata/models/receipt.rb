@@ -2,8 +2,7 @@ class Kata::Receipt
   attr_reader :items, :discounts
 
   def initialize
-    @items = []
-    @discounts = []
+    @items, @discounts = [], []
   end
 
   def total_price
