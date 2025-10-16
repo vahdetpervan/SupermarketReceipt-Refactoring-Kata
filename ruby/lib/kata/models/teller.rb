@@ -11,7 +11,6 @@ class Kata::Teller
 
   def checks_out_articles_from(the_cart)
     receipt = Kata::Receipt.new
-    product_quantities = the_cart.items
     the_cart.items.each do |product_quantity|
       unit_price = @catalog.unit_price(product_quantity.product)
       price = product_quantity.quantity * unit_price
