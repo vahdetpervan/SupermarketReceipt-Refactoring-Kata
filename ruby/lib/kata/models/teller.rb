@@ -8,11 +8,7 @@ class Kata::Teller
   def add_special_offer(offer_type, product, argument) = @offers[product] = offer_for(offer_type, product, argument)
 
   def checks_out_articles_from(the_cart)
-    the_cart.product_quantities.each do |product, quantity|
-      price = quantity * @catalog.unit_price(product)
-      @receipt.add_product(product, quantity, @catalog.unit_price(product), price) if product.unit == Kata::ProductUnit::KILO
-      quantity.times { @receipt.add_product(product, 1, @catalog.unit_price(product), @catalog.unit_price(product)) } if product.unit == Kata::ProductUnit::EACH
-    end
+    the_cart.product_quantities.each { |product, quantity| handle_products(product.unit, product, quantity) }
     the_cart.handle_offers(@receipt, @offers, @catalog)
     @receipt
   end
