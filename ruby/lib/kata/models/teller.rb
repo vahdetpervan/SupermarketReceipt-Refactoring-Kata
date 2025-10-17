@@ -17,4 +17,15 @@ class Kata::Teller
     the_cart.handle_offers(@receipt, @offers, @catalog)
     @receipt
   end
+
+  private
+
+  def offers
+    {
+      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
+      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
+      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount,
+      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
+    }
+  end
 end
