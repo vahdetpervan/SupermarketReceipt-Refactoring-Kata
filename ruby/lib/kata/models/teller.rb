@@ -28,6 +28,14 @@ class Kata::Teller
     }[offer_type].new({ product:, argument: })
   end
 
+  def handle_products(product_unit, *args)
+    method_name = {
+      Kata::ProductUnit::KILO => :handle_kilo,
+      Kata::ProductUnit::EACH => :handle_unit,
+    }[product_unit]
+    send(method_name, *args)
+  end
+
   def handle_kilo(product, quantity)
     price = quantity * @catalog.unit_price(product)
     @receipt.add_product(product, quantity, @catalog.unit_price(product), price)
