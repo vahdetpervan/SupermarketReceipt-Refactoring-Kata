@@ -5,7 +5,7 @@ class Kata::Teller
     @receipt = Kata::Receipt.new
   end
 
-  def add_special_offer(offer_type, product, argument) = @offers[product] = offers(offer_type, product, argument)
+  def add_special_offer(offer_type, product, argument) = @offers[product] = offer_for(offer_type, product, argument)
 
   def checks_out_articles_from(the_cart)
     the_cart.product_quantities.each do |product, quantity|
@@ -19,7 +19,7 @@ class Kata::Teller
 
   private
 
-  def offers(offer_type, product, argument)
+  def offer_for(offer_type, product, argument)
     {
       Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
       Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
