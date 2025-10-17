@@ -9,7 +9,7 @@ class Kata::Teller
 
   def checks_out_articles_from(the_cart)
     the_cart.product_quantities.each { |product, quantity| handle_products(product.unit, product, quantity) }
-    the_cart.handle_offers(@receipt, @offers, @catalog)
+    handle_offers(the_cart)
     @receipt
   end
 
