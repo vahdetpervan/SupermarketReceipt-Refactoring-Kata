@@ -20,12 +20,12 @@ class Kata::Teller
 
   private
 
-  def offers
+  def offers(offer_type, product, argument)
     {
       Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
       Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
       Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount,
       Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
-    }
+    }[offer_type].new({ product:, argument: })
   end
 end
