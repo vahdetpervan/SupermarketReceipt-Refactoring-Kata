@@ -3,12 +3,6 @@ class Kata::ShoppingCart
 
   def initialize
     @product_quantities = Hash.new(0)
-    @discount_classes = {
-      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
-      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
-      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount,
-      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
-    }.freeze
   end
 
   def add_item_quantity(product, quantity) = product_quantities[product] += quantity
