@@ -19,10 +19,6 @@ class Kata::ShoppingCart
 
       if @discount_classes.values.any? { |klass| offers[product].is_a?(klass) }
         discount = offers[product].calculate(unit_price: catalog.unit_price(product), quantity:)
-      else
-        discount = @discount_classes[offers[product].offer_type].new(
-          {offers:, product:, argument: offers[product].argument}
-        ).calculate(unit_price: catalog.unit_price(product), quantity:)
       end
 
       receipt.add_discount(discount) if discount
