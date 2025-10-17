@@ -1,12 +1,11 @@
 class Kata::Teller
-
   def initialize(catalog)
     @catalog = catalog
     @offers = {}
     @receipt = Kata::Receipt.new
   end
 
-  def add_special_offer(offer_type, product, argument) = @offers[product] = Kata::Offer.new(offer_type, product, argument)
+  def add_special_offer(offer_type, product, argument) = @offers[product] = offers(offer_type, product, argument)
 
   def checks_out_articles_from(the_cart)
     the_cart.product_quantities.each do |product, quantity|
