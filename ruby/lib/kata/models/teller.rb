@@ -40,4 +40,13 @@ class Kata::Teller
   def handle_unit(product, quantity)
     quantity.times { @receipt.add_product(product, 1, @catalog.unit_price(product), @catalog.unit_price(product)) }
   end
+
+  def handle_offers(the_cart)
+    the_cart.product_quantities.each do |product, quantity|
+      next unless @offers.key?(product)
+
+      discount = @offers[product].calculate(unit_price: @catalog.unit_price(product), quantity:)
+      @receipt.add_discount(discount) if discount
+    end
+  end
 end
