@@ -27,4 +27,13 @@ class Kata::Teller
       Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
     }[offer_type].new({ product:, argument: })
   end
+
+  def handle_kilo(product, quantity)
+    price = quantity * @catalog.unit_price(product)
+    @receipt.add_product(product, quantity, @catalog.unit_price(product), price)
+  end
+
+  def handle_unit(product, quantity)
+    quantity.times { @receipt.add_product(product, 1, @catalog.unit_price(product), @catalog.unit_price(product)) }
+  end
 end
