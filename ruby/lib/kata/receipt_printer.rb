@@ -46,9 +46,8 @@ class Kata::ReceiptPrinter
 
   def print_total_price(result, receipt)
     result.concat("\n")
-    price_presentation = "%.2f" % receipt.total_price
     total = "Total: "
-    whitespace = whitespace(@columns - total.size - price_presentation.size)
-    result.concat(total, whitespace, price_presentation)
+    whitespace = whitespace(@columns - total.size - format_price(receipt.total_price).size)
+    result.concat(total, whitespace, format_price(receipt.total_price))
   end
 end
