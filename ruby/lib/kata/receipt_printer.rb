@@ -27,7 +27,6 @@ class Kata::ReceiptPrinter
       line += "  " + format_price(item.price) + " * " + present_quantity(item) + "\n" if item.quantity != 1
       @result.concat(line)
     end
-    @result
   end
 
   def print_discounts(discounts)
@@ -38,7 +37,6 @@ class Kata::ReceiptPrinter
         "-", format_price(discount.discount_amount) + "\n"
       )
     end
-    @result
   end
 
   def print_total_price(receipt)
