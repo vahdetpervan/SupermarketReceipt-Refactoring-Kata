@@ -6,4 +6,8 @@ class Kata::Discount
     @description = description
     @discount_amount = discount_amount
   end
+
+  def product_name
+    @product.name
+  end
 end
