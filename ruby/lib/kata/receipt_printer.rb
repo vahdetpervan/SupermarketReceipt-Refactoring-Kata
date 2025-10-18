@@ -21,12 +21,11 @@ class Kata::ReceiptPrinter
 
   def print_items(items, result)
     items.each do |item|
-      price = "%.2f" % item.total_price
       name = item.product.name
       unit_price = "%.2f" % item.price
 
       whitespace_size = @columns - name.size - format_price(item.total_price).size
-      line = name + whitespace(whitespace_size) + price + "\n"
+      line = name + whitespace(whitespace_size) + format_price(item.total_price) + "\n"
       line += "  " + unit_price + " * " + present_quantity(item) + "\n" if item.quantity != 1
 
       result.concat(line)
