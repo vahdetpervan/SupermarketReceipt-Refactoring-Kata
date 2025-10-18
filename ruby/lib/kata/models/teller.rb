@@ -8,7 +8,7 @@ class Kata::Teller
   def add_special_offer(offer_type, product, argument) = @offers[product] = offer_for(offer_type, product, argument)
 
   def checks_out_articles_from(the_cart)
-    the_cart.product_quantities.each { |product, quantity| handle_products(product.unit, product, quantity) }
+    the_cart.product_quantities.each { |product, quantity| add_product_to_receipt(product.unit, product, quantity) }
     handle_offers(the_cart)
     @receipt
   end
@@ -24,7 +24,7 @@ class Kata::Teller
     }[offer_type].new({ product:, argument: })
   end
 
-  def handle_products(product_unit, *args)
+  def add_product_to_receipt(product_unit, *args)
     method_name = {
       Kata::ProductUnit::KILO => :handle_kilo,
       Kata::ProductUnit::EACH => :handle_unit,
