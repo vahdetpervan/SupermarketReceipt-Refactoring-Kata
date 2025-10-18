@@ -17,13 +17,15 @@ class Kata::ReceiptPrinter
 
   def whitespace(whitespace_size) = " " * whitespace_size
 
+  def format_price(price) = "%.2f" % price
+
   def print_items(items, result)
     items.each do |item|
       price = "%.2f" % item.total_price
       name = item.product.name
       unit_price = "%.2f" % item.price
 
-      whitespace_size = @columns - name.size - price.size
+      whitespace_size = @columns - name.size - format_price(item.total_price).size
       line = name + whitespace(whitespace_size) + price + "\n"
       line += "  " + unit_price + " * " + present_quantity(item) + "\n" if item.quantity != 1
 
