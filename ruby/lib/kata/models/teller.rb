@@ -21,7 +21,7 @@ class Kata::Teller
       Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
       Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount,
       Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
-    }[offer_type].new({ product:, argument: base_price, base_price: })
+    }[offer_type].new({ product:, base_price: })
   end
 
   def add_product_to_receipt(product_unit, *args)
