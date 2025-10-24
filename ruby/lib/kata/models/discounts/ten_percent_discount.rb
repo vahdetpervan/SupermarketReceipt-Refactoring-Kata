@@ -3,6 +3,7 @@ module Kata::Discounts
     def initialize(options = {})
       @product = options[:product]
       @argument = options[:argument]
+      @base_price = options[:base_price]
     end
 
     def calculate(quantity:, unit_price:)
