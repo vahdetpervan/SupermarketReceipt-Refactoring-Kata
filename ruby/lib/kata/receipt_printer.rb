@@ -1,14 +1,14 @@
 class Kata::ReceiptPrinter
-  def initialize(columns = 40, receipt = nil)
+  def initialize(columns = 40, receipt)
     @columns = columns
     @result = ""
     @receipt = receipt
   end
 
-  def print_receipt(receipt)
-    print_items(receipt.items)
-    print_discounts(receipt.discounts)
-    print_total_price(receipt)
+  def print_receipt(receipt = nil)
+    print_items(@receipt.items)
+    print_discounts(@receipt.discounts)
+    print_total_price(@receipt)
   end
 
   private
@@ -43,6 +43,6 @@ class Kata::ReceiptPrinter
   end
 
   def print_total_price(receipt)
-    @result.concat("\n", "Total: ", whitespace(33 - format_price(receipt.total_price).size), format_price(receipt.total_price))
+    @result.concat("\n", "Total: ", whitespace(33 - format_price(@receipt.total_price).size), format_price(receipt.total_price))
   end
 end
