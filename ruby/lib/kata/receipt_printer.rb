@@ -43,6 +43,6 @@ class Kata::ReceiptPrinter
   end
 
   def print_total_price
-    @result.concat("\n", "Total: ", whitespace(33 - format_price(@receipt.total_price).size), format_price(@receipt.total_price))
+    @result.concat("\nTotal: ", whitespace(33 - format_price(@receipt.total_price).size), format_price(@receipt.total_price))
   end
 end
