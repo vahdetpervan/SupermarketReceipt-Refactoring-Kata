@@ -6,7 +6,7 @@ class Kata::ReceiptPrinter
   end
 
   def print_receipt
-    print_items(@receipt.items)
+    print_items
     print_discounts(@receipt.discounts)
     print_total_price(@receipt)
   end
@@ -21,8 +21,8 @@ class Kata::ReceiptPrinter
 
   def format_price(price) = "%.2f" % price
 
-  def print_items(items)
-    items.each do |item|
+  def print_items
+    @receipt.items.each do |item|
       @result.concat(
         item.product.name,
         whitespace(@columns - item.product.name.size - format_price(item.total_price).size),
