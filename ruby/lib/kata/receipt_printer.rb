@@ -1,7 +1,8 @@
 class Kata::ReceiptPrinter
-  def initialize(columns = 40)
+  def initialize(columns = 40, receipt = nil)
     @columns = columns
     @result = ""
+    @receipt = receipt
   end
 
   def print_receipt(receipt)
