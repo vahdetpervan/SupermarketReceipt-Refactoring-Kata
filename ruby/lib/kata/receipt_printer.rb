@@ -5,7 +5,7 @@ class Kata::ReceiptPrinter
     @receipt = receipt
   end
 
-  def print_receipt(receipt = nil)
+  def print_receipt
     print_items(@receipt.items)
     print_discounts(@receipt.discounts)
     print_total_price(@receipt)
