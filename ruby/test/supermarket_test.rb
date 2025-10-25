@@ -39,20 +39,14 @@ class SupermarketTest < Minitest::Test
   end
 
   def test_buy_two_get_one_free
-    @the_cart.add_item(@toothbrush, 1)
-    @the_cart.add_item(@toothbrush, 1)
-    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 3)
     @teller.add_special_offer(Kata::SpecialOfferType::THREE_FOR_TWO, @toothbrush, @catalog.unit_price(@toothbrush))
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_buy_five_get_one_free
-    @the_cart.add_item(@toothbrush, 1)
-    @the_cart.add_item(@toothbrush, 1)
-    @the_cart.add_item(@toothbrush, 1)
-    @the_cart.add_item(@toothbrush, 1)
-    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 5)
     @teller.add_special_offer(Kata::SpecialOfferType::THREE_FOR_TWO, @toothbrush, @catalog.unit_price(@toothbrush))
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
@@ -72,8 +66,7 @@ class SupermarketTest < Minitest::Test
   end
 
   def test_x_for_y_discount
-    @the_cart.add_item(@cherry_tomatoes, 1)
-    @the_cart.add_item(@cherry_tomatoes, 1)
+    @the_cart.add_item(@cherry_tomatoes, 2)
     @teller.add_special_offer(Kata::SpecialOfferType::TWO_FOR_AMOUNT, @cherry_tomatoes, 0.99)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
@@ -106,5 +99,4 @@ class SupermarketTest < Minitest::Test
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
-
 end
