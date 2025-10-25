@@ -3,5 +3,5 @@ class FakeCatalog < Kata::SupermarketCatalog
 
   def add_product(product, price) = @products[product.name] = price
 
-  def unit_price(p) = @products.fetch(p.name)
+  def unit_price(product) = @products.fetch(product.name)
 end
