@@ -26,82 +26,82 @@ class SupermarketTest < Minitest::Test
   end
 
   def test_one_normal_item
-    @the_cart.add_item_quantity(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_two_normal_items
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@rice, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@rice, 1)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_buy_two_get_one_free
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
     @teller.add_special_offer(Kata::SpecialOfferType::THREE_FOR_TWO, @toothbrush, @catalog.unit_price(@toothbrush))
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_buy_five_get_one_free
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@toothbrush, 1)
-    @the_cart.add_item_quantity(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
+    @the_cart.add_item(@toothbrush, 1)
     @teller.add_special_offer(Kata::SpecialOfferType::THREE_FOR_TWO, @toothbrush, @catalog.unit_price(@toothbrush))
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_loose_weight_product
-    @the_cart.add_item_quantity(@apples, 0.5)
+    @the_cart.add_item(@apples, 0.5)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_percent_discount
-    @the_cart.add_item_quantity(@rice, 1)
+    @the_cart.add_item(@rice, 1)
     @teller.add_special_offer(Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT, @rice, 10.0)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_x_for_y_discount
-    @the_cart.add_item_quantity(@cherry_tomatoes, 1)
-    @the_cart.add_item_quantity(@cherry_tomatoes, 1)
+    @the_cart.add_item(@cherry_tomatoes, 1)
+    @the_cart.add_item(@cherry_tomatoes, 1)
     @teller.add_special_offer(Kata::SpecialOfferType::TWO_FOR_AMOUNT, @cherry_tomatoes, 0.99)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_five_for_y_discount
-    @the_cart.add_item_quantity(@apples, 5)
+    @the_cart.add_item(@apples, 5)
     @teller.add_special_offer(Kata::SpecialOfferType::FIVE_FOR_AMOUNT, @apples, 6.99)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_five_for_y_discount_with_six
-    @the_cart.add_item_quantity(@apples, 6)
+    @the_cart.add_item(@apples, 6)
     @teller.add_special_offer(Kata::SpecialOfferType::FIVE_FOR_AMOUNT, @apples, 6.99)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_five_for_y_discount_with_sixteen
-    @the_cart.add_item_quantity(@apples, 16)
+    @the_cart.add_item(@apples, 16)
     @teller.add_special_offer(Kata::SpecialOfferType::FIVE_FOR_AMOUNT, @apples, 6.99)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
   end
 
   def test_five_for_y_discount_with_four
-    @the_cart.add_item_quantity(@apples, 4)
+    @the_cart.add_item(@apples, 4)
     @teller.add_special_offer(Kata::SpecialOfferType::FIVE_FOR_AMOUNT, @apples, 6.99)
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt

@@ -3,5 +3,5 @@ class Kata::ShoppingCart
 
   def initialize = @product_quantities = Hash.new(0)
 
-  def add_item_quantity(product, quantity) = product_quantities[product] += quantity
+  def add_item(product, quantity) = product_quantities[product] += quantity
 end
