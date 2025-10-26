@@ -6,7 +6,7 @@ module Kata::Discounts
     end
 
     def calculate(quantity:, unit_price:)
-      Kata::Discount.new(@product, @base_price.to_s + "% off", quantity * unit_price * @base_price / 100.0)
+      Kata::Discount.new(@product, "#{@base_price}% off", quantity * unit_price * @base_price / 100.0)
     end
   end
 end
