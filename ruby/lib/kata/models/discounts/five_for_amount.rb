@@ -9,7 +9,7 @@ module Kata::Discounts
       return unless quantity.to_i >= 5
 
       discount_total = unit_price * quantity - (@base_price * (quantity.to_i / 5) + quantity.to_i % 5 * unit_price)
-      Kata::Discount.new(@product, 5.to_s + " for " + @base_price.to_s, discount_total)
+      Kata::Discount.new(@product, "5 for #{@base_price}", discount_total)
     end
   end
 end
