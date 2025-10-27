@@ -17,11 +17,11 @@ class Kata::Teller
 
   def offer_for(offer_type, product, base_price)
     {
-      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount,
-      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo,
-      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount,
-      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount
-    }[offer_type].new({ product:, base_price: })
+      Kata::SpecialOfferType::TWO_FOR_AMOUNT => Kata::Discounts::TwoForAmount.new({ product:, base_price: }),
+      Kata::SpecialOfferType::THREE_FOR_TWO => Kata::Discounts::ThreeForTwo.new({ product:, base_price: }),
+      Kata::SpecialOfferType::TEN_PERCENT_DISCOUNT => Kata::Discounts::TenPercentDiscount.new({ product:, base_price: }),
+      Kata::SpecialOfferType::FIVE_FOR_AMOUNT => Kata::Discounts::FiveForAmount.new({ product:, base_price: })
+    }[offer_type]
   end
 
   def add_product_to_receipt(product_unit, *args)
