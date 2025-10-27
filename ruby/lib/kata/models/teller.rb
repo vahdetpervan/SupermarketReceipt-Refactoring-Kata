@@ -8,7 +8,7 @@ class Kata::Teller
   def add_special_offer(offer_type, product, base_price) = @offers[product] = offer_for(offer_type, product, base_price)
 
   def checks_out_articles_from(the_cart)
-    the_cart.product_quantities.each { |product, quantity| add_product_to_receipt(product.unit, product, quantity) }
+    the_cart.each { |product, quantity| add_product_to_receipt(product.unit, product, quantity) }
     handle_offers(the_cart)
     @receipt
   end
