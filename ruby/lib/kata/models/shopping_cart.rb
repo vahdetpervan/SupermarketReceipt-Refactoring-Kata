@@ -1,4 +1,5 @@
 class Kata::ShoppingCart
+  include Enumerable
   attr_reader :product_quantities
 
   def initialize = @product_quantities = Hash.new(0)
