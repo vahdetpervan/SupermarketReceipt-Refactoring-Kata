@@ -42,7 +42,7 @@ class Kata::Teller
   end
 
   def handle_offers(the_cart)
-    the_cart.product_quantities.each do |product, quantity|
+    the_cart.each do |product, quantity|
       next unless @offers.key?(product)
 
       discount = @offers[product].calculate(unit_price: @catalog.unit_price(product), quantity:)
