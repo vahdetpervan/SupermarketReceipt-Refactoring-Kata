@@ -42,7 +42,7 @@ class Kata::Teller
   end
 
   def handle_offers(the_cart)
-    the_cart.select { |product, _quantity| @offers.key?(product) }.each do |product, quantity|
+    the_cart.select { |product, _| @offers.key?(product) }.each do |product, quantity|
       discount = @offers[product].calculate(unit_price: @catalog.unit_price(product), quantity:)
       @receipt.add_discount(discount) if discount
     end
