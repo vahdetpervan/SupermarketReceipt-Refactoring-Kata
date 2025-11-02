@@ -25,16 +25,12 @@ class Kata::Teller
   end
 
   def add_product_to_receipt(product_unit, product, quantity)
-    product_unit == Kata::ProductUnit::KILO ? handle_kilo(product, quantity) : handle_unit(product, quantity)
-  end
-
-  def handle_kilo(product, quantity)
-    price = quantity * @catalog.unit_price(product)
-    @receipt.add_product(product, quantity, @catalog.unit_price(product), price)
-  end
-
-  def handle_unit(product, quantity)
-    quantity.times { @receipt.add_product(product, 1, @catalog.unit_price(product), @catalog.unit_price(product)) }
+    unit_price = @catalog.unit_price(product)
+    if product_unit == Kata::ProductUnit::KILO
+      @receipt.add_product(product, quantity, unit_price, quantity * unit_price)
+    else
+      quantity.times { @receipt.add_product(product, 1, unit_price, unit_price) }
+    end
   end
 
   def handle_offers(the_cart)
