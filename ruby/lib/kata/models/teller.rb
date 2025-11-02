@@ -24,12 +24,8 @@ class Kata::Teller
     }[offer_type]
   end
 
-  def add_product_to_receipt(product_unit, *args)
-    method_name = {
-      Kata::ProductUnit::KILO => :handle_kilo,
-      Kata::ProductUnit::EACH => :handle_unit,
-    }[product_unit]
-    send(method_name, *args)
+  def add_product_to_receipt(product_unit, product, quantity)
+    product_unit == Kata::ProductUnit::KILO ? handle_kilo(product, quantity) : handle_unit(product, quantity)
   end
 
   def handle_kilo(product, quantity)
