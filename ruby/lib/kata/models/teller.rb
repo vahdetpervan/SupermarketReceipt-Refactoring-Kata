@@ -7,7 +7,7 @@ class Kata::Teller
   end
 
   def add_special_offer(offer_type, product, base_price) = @offers[product] = offer_for(offer_type, product, base_price)
-  def add_bundle(products, discount_amount) = @bundles << Discounts::Bundle.new({products:, catalog: @catalog, discount_amount:})
+  def add_bundle(products, discount_amount) = @bundles << Kata::Discounts::Bundle.new({products:, catalog: @catalog, discount_amount:})
 
   def checks_out_articles_from(the_cart)
     the_cart.each { |product, quantity| add_product_to_receipt(product.unit, product, quantity) }
@@ -44,7 +44,7 @@ class Kata::Teller
   def handle_bundles(the_cart)
     @bundles.each do |bundle|
       result = the_cart.product_quantities.values.sum / bundle.products.size
-      result.times { @receipt.add_bundle(bundle.calculate) }
+      result.times { @receipt.add_discount(bundle.calculate) }
     end
   end
 end
