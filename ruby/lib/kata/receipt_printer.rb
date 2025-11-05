@@ -8,6 +8,7 @@ class Kata::ReceiptPrinter
   def print_receipt
     print_items
     print_discounts
+    print_bundles
     print_total_price
   end
 
@@ -38,6 +39,15 @@ class Kata::ReceiptPrinter
         discount.description, "(#{discount.product.name})",
         whitespace(@columns - 3 - discount.product.name.size - discount.description.size - format_price(discount.discount_amount).size),
         "-", format_price(discount.discount_amount) + "\n"
+      )
+    end
+  end
+
+  def print_bundles
+    @receipt.bundles.each do |discount|
+      @result.concat(
+        "\n", discount.description, " (#{discount.product.map(&:name).join(", ")}) ", "(#{"-10%"})",
+        whitespace(2), "#{(discount.discount_amount)}" + "\n"
       )
     end
   end
