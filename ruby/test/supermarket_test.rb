@@ -20,6 +20,16 @@ class SupermarketTest < Minitest::Test
     @catalog.add_product(@cherry_tomatoes, 0.69)
   end
 
+  def test_bundle_discount
+    toothpaste = Kata::Product.new("toothpaste", Kata::ProductUnit::EACH)
+    @catalog.add_product(toothpaste, 0.99)
+    @teller.add_bundle([@toothbrush, toothpaste], 10)
+    @the_cart.add_item(@toothbrush, 2)
+    @the_cart.add_item(toothpaste, 3)
+    receipt = @teller.checks_out_articles_from(@the_cart)
+    verify Kata::ReceiptPrinter.new(40, receipt).print_receipt
+  end
+
   def test_an_empty_shopping_cart_should_cost_nothing
     receipt = @teller.checks_out_articles_from(@the_cart)
     verify Kata::ReceiptPrinter.new(40, receipt).print_receipt

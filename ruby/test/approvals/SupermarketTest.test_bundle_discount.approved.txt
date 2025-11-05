@@ -1,0 +1,11 @@
+toothbrush                          0.99
+toothbrush                          0.99
+toothpaste                          0.99
+toothpaste                          0.99
+toothpaste                          0.99
+
+Bundle (toothbrush, toothpaste) (-10%)  0.2
+
+Bundle (toothbrush, toothpaste) (-10%)  0.2
+
+Total:                              4.55
