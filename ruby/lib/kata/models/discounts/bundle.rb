@@ -7,9 +7,7 @@ module Kata::Discounts
       @discount_amount = options[:discount_amount]
     end
 
-    def calculate
-      Kata::Discount.new(@products, "Bundle", product_prices.sum * @discount_amount / 100)
-    end
+    def calculate = Kata::Discount.new(@products, "Bundle", product_prices.sum * @discount_amount / 100)
 
     private
 
