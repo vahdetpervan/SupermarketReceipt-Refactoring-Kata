@@ -43,7 +43,7 @@ class Kata::Teller
 
   def handle_bundles(the_cart)
     @bundles.each do |bundle|
-      result = the_cart.product_quantities.values.sum / bundle.products.size
+      result = the_cart.product_quantities.select { |product, _| bundle.products.include?(product) }.values.sum / bundle.products.size
       result.times { @receipt.add_bundle(bundle.calculate) }
     end
   end
